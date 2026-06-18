@@ -13,6 +13,26 @@
       because it's unique.
     </p>
     <p class="tagline">Hopefully that's why you're here.</p>
+
+    <p>
+      I also do literature work, and work on literature projects.
+      I am the lead writer for a large worldbuilding project called
+      <strong><a
+        href="https://projectneochroma.miraheze.org/wiki/Main_Page"
+        target="_blank"
+        rel="noopener"
+        class="neochroma-link"
+      >Project Neo Chroma</a></strong>, which you can see at the link.
+    </p>
+
+    <a
+      href="https://projectneochroma.miraheze.org/wiki/Main_Page"
+      target="_blank"
+      rel="noopener"
+      class="neochroma-btn"
+    >
+      📖 Project Neo Chroma
+    </a>
   </section>
 
   <!-- DO'S & DON'TS -->
@@ -235,6 +255,36 @@
   }
   .kofi-btn:hover {
     background: var(--accent-gold);
+    color: oklch(10% 0.02 280);
+  }
+
+  /* Project Neo Chroma */
+  .neochroma-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+  }
+  .neochroma-link:hover {
+    color: oklch(0.7 0.18 320);
+  }
+
+  .neochroma-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 7px 16px;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-decoration: none;
+    transition: background 0.25s, color 0.25s;
+  }
+  .neochroma-btn:hover {
+    background: var(--accent);
     color: oklch(10% 0.02 280);
   }
 
