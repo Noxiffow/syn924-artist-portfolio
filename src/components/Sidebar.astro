@@ -58,6 +58,20 @@
     </p>
   </section>
 
+  <!-- SUPPORT -->
+  <section class="sidebar-section" id="support">
+    <h2>Support</h2>
+    <p>If you like my work, consider buying me a coffee.</p>
+    <a
+      href="https://ko-fi.com/shark924syn"
+      target="_blank"
+      rel="noopener"
+      class="kofi-btn"
+    >
+      ☕ Support on Ko-fi
+    </a>
+  </section>
+
   <!-- CONTACT -->
   <section class="sidebar-section" id="contact">
     <h2>Contact</h2>
@@ -205,6 +219,23 @@
 
   a {
     transition: color 0.2s;
+  }
+
+  .kofi-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 18px;
+    border: 1px solid var(--accent-gold);
+    border-radius: 6px;
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background 0.25s, color 0.25s;
+  }
+  .kofi-btn:hover {
+    background: var(--accent-gold);
+    color: oklch(10% 0.02 280);
   }
 
   @media (max-width: 768px) {
