@@ -1,0 +1,368 @@
+---
+// Syn924 · Gallery SFW/NSFW
+interface Artwork {
+  title: string;
+  src: string;
+  medium: string;
+  size: string;
+  nsfw: boolean;
+}
+
+const sfw: Omit<Artwork, 'nsfw'>[] = [
+  { title: '', src: '/images/SFW/Comission2.png',       medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/comission3_BDRP.png',  medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/Comission_4.png',      medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/Dancee.png',           medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/Dr_Hiss.png',          medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/Eli.png',              medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/G3P90V8aMAAs-ft.png',  medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/HF2OqvMasAA6kzI.png',  medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/HK2EvmYbAAADTWX.png',  medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/HKsbeB1bUAAtt85.png',  medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/HKwyPJqbkAEJq--.png',  medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/image-17.png',         medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/image-5.png',          medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/image.png',            medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/image2.png',           medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/image3.png',           medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/image4.png',           medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/image6.png',           medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/image7.png',           medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/nadia.png',            medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/Nurse_Pepper.png',     medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/vancouver.png',        medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/SFW/Xainn_comm3.png',      medium: 'Digital paint', size: '' },
+];
+
+const nsfwList: Omit<Artwork, 'nsfw'>[] = [
+  { title: '', src: '/images/NSFW/iaf1.png',            medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/iaf2.png',            medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/iaf3.png',            medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/iaf4.png',            medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/image.png',           medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/image1.png',          medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/image5.png',          medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/image8.png',          medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/image9.png',          medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/Pretty_boy.png',      medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/sonar1.png',          medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/sonar2.png',          medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/SPOILER_Syn_BJ.png',  medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/SPOILER_Syn_BJ_bruise_vers.png', medium: 'Digital paint', size: '' },
+  { title: '', src: '/images/NSFW/wowwoew.png',         medium: 'Digital paint', size: '' },
+];
+
+const artworks: Artwork[] = [
+  ...sfw.map(a => ({ ...a, nsfw: false })),
+  ...nsfwList.map(a => ({ ...a, nsfw: true })),
+];
+---
+
+<main class="gallery">
+  <header class="gallery-header">
+    <h1>Gallery</h1>
+    <p class="gallery-subtitle">
+      Select commissions &amp; personal work.
+      <span class="nsfw-hint">Toggle <span class="nsfw-label">NSFW</span> to see darker pieces only.</span>
+    </p>
+  </header>
+
+  <div class="masonry">
+    {artworks.map((art) => (
+      <article 
+        class={`gallery-item${art.nsfw ? ' nsfw' : ''}`}
+        data-nsfw={art.nsfw ? 'true' : 'false'}
+      >
+        <div class="art-frame">
+          <img
+            src={art.src}
+            alt={art.src.split('/').pop()?.split('.')[0] || ''}
+            loading="lazy"
+            decoding="async"
+            class="art-img"
+          />
+        </div>
+        {art.nsfw && <span class="nsfw-badge">NSFW</span>}
+        <div class="art-meta">
+          {art.title && <h3>{art.title}</h3>}
+          <p>{art.medium}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Vista completa">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">&#x2715;</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
+<script>
+  const isDesktop = () => window.matchMedia('(min-width: 769px)').matches;
+
+  const lightbox = document.getElementById('lightbox')!;
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+
+  function openLightbox(src: string, alt: string) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  }
+
+  document.querySelectorAll<HTMLElement>('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (!isDesktop()) return;
+      const img = item.querySelector<HTMLImageElement>('.art-img');
+      if (img) openLightbox(img.src, img.alt);
+    });
+  });
+
+  document.getElementById('lightbox-close')!.addEventListener('click', e => {
+    e.stopPropagation();
+    closeLightbox();
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+<style>
+  .gallery {
+    padding: 2rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .gallery-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .gallery-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .gallery-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+  }
+  .nsfw-hint {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-left: 0.5rem;
+  }
+  .nsfw-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .masonry {
+    columns: 3;
+    column-gap: var(--gap);
+  }
+  @media (max-width: 900px) { .masonry { columns: 2; } }
+  @media (max-width: 560px) { .masonry { columns: 1; } }
+
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: var(--gap);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+    position: relative;
+  }
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px oklch(0% 0 0 / 50%),
+                0 0 0 1px var(--accent-purple);
+    border-color: var(--accent-purple);
+  }
+
+  .art-frame {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface-elevated);
+    aspect-ratio: 3 / 4;
+  }
+  .art-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .gallery-item:hover .art-img {
+    transform: scale(1.03);
+  }
+
+  .nsfw-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: oklch(0.45 0.22 15);
+    color: oklch(0.95 0.02 15);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.2em 0.55em;
+    border-radius: var(--radius-sm);
+    z-index: 2;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .art-meta {
+    padding: 0.85rem 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .art-meta h3 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+  .art-meta p {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+  }
+
+  /* ── NSFW filter logic ── */
+  .gallery-item[data-nsfw="true"] { display: none; }
+  .gallery-item[data-nsfw="false"] { display: block; }
+
+  .nsfw-visible .gallery-item[data-nsfw="false"] { display: none; }
+  .nsfw-visible .gallery-item[data-nsfw="true"] { display: block; }
+
+  /* ── Blur for NSFW items when not in NSFW mode (fallback, hidden by default anyway) ── */
+  .gallery-item[data-nsfw="true"] .art-img {
+    filter: blur(40px);
+  }
+  .nsfw-visible .gallery-item[data-nsfw="true"] .art-img {
+    filter: none;
+  }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: oklch(0% 0 0 / 88%);
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    backdrop-filter: blur(6px);
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 32px 80px oklch(0% 0 0 / 70%);
+    cursor: default;
+    user-select: none;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: oklch(0.85 0 0);
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .lightbox-close:hover { opacity: 1; }
+
+  /* Desktop only — disable lightbox cursor hint on mobile */
+  @media (max-width: 768px) {
+    .gallery-item { cursor: default; }
+  }
+  @media (min-width: 769px) {
+    .gallery-item { cursor: zoom-in; }
+  }
+
+  /* ── Staggered entrance ── */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .gallery-item {
+    animation: fadeUp 0.5s ease both;
+  }
+  .gallery-item:nth-child(1)  { animation-delay: 0.00s; }
+  .gallery-item:nth-child(2)  { animation-delay: 0.02s; }
+  .gallery-item:nth-child(3)  { animation-delay: 0.04s; }
+  .gallery-item:nth-child(4)  { animation-delay: 0.06s; }
+  .gallery-item:nth-child(5)  { animation-delay: 0.08s; }
+  .gallery-item:nth-child(6)  { animation-delay: 0.10s; }
+  .gallery-item:nth-child(7)  { animation-delay: 0.12s; }
+  .gallery-item:nth-child(8)  { animation-delay: 0.14s; }
+  .gallery-item:nth-child(9)  { animation-delay: 0.16s; }
+  .gallery-item:nth-child(10) { animation-delay: 0.18s; }
+  .gallery-item:nth-child(11) { animation-delay: 0.20s; }
+  .gallery-item:nth-child(12) { animation-delay: 0.22s; }
+  .gallery-item:nth-child(13) { animation-delay: 0.24s; }
+  .gallery-item:nth-child(14) { animation-delay: 0.26s; }
+  .gallery-item:nth-child(15) { animation-delay: 0.28s; }
+  .gallery-item:nth-child(16) { animation-delay: 0.30s; }
+  .gallery-item:nth-child(17) { animation-delay: 0.32s; }
+  .gallery-item:nth-child(18) { animation-delay: 0.34s; }
+  .gallery-item:nth-child(19) { animation-delay: 0.36s; }
+  .gallery-item:nth-child(20) { animation-delay: 0.38s; }
+  .gallery-item:nth-child(21) { animation-delay: 0.40s; }
+  .gallery-item:nth-child(22) { animation-delay: 0.42s; }
+  .gallery-item:nth-child(23) { animation-delay: 0.44s; }
+  .gallery-item:nth-child(24) { animation-delay: 0.46s; }
+  .gallery-item:nth-child(25) { animation-delay: 0.48s; }
+  .gallery-item:nth-child(26) { animation-delay: 0.50s; }
+  .gallery-item:nth-child(27) { animation-delay: 0.52s; }
+  .gallery-item:nth-child(28) { animation-delay: 0.54s; }
+  .gallery-item:nth-child(29) { animation-delay: 0.56s; }
+  .gallery-item:nth-child(30) { animation-delay: 0.58s; }
+  .gallery-item:nth-child(31) { animation-delay: 0.60s; }
+  .gallery-item:nth-child(32) { animation-delay: 0.62s; }
+  .gallery-item:nth-child(33) { animation-delay: 0.64s; }
+  .gallery-item:nth-child(34) { animation-delay: 0.66s; }
+  .gallery-item:nth-child(35) { animation-delay: 0.68s; }
+  .gallery-item:nth-child(36) { animation-delay: 0.70s; }
+  .gallery-item:nth-child(37) { animation-delay: 0.72s; }
+  .gallery-item:nth-child(38) { animation-delay: 0.74s; }
+</style>

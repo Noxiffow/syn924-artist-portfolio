@@ -1,0 +1,36 @@
+<footer>
+  <span>&copy; {new Date().getFullYear()} Syn924 &middot; All rights reserved</span>
+  <span>
+    Handcrafted by
+    <a href="https://nozutech.dev" target="_blank" rel="noopener">Jotadev</a>
+    &middot; jotadev@nozutech.dev
+  </span>
+</footer>
+
+<style>
+  footer {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background: var(--bg);
+  }
+
+  footer a {
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    footer {
+      flex-direction: column;
+      gap: 4px;
+      height: auto;
+      padding: 12px 16px;
+      text-align: center;
+    }
+  }
+</style>

@@ -1,0 +1,90 @@
+---
+// Syn924 · Nav con toggle NSFW
+---
+
+<nav class="nav">
+  <a href="/" class="nav-brand">Syn<span class="brand-num">924</span></a>
+  <div class="nav-links">
+    <a href="/tos">TOS</a>
+    <button id="nsfw-toggle" class="nsfw-toggle" aria-label="Toggle NSFW content" title="Toggle NSFW">
+      NSFW
+      <span class="toggle-slider"></span>
+    </button>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-h);
+    padding: 0 1.5rem;
+    background: oklch(12% 0.015 280 / 88%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+  .nav-brand:hover {
+    color: var(--accent);
+  }
+  .brand-num {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    color: var(--accent-purple);
+    letter-spacing: 0;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover {
+    color: var(--text);
+    background: var(--surface);
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nsfw-toggle');
+  const stored = localStorage.getItem('syn924-nsfw') === 'true';
+
+  function apply(state: boolean) {
+    if (state) {
+      toggle.classList.add('active');
+      document.documentElement.classList.add('nsfw-visible');
+    } else {
+      toggle.classList.remove('active');
+      document.documentElement.classList.remove('nsfw-visible');
+    }
+  }
+
+  if (stored) apply(true);
+
+  toggle.addEventListener('click', () => {
+    const next = !toggle.classList.contains('active');
+    apply(next);
+    localStorage.setItem('syn924-nsfw', String(next));
+  });
+</script>

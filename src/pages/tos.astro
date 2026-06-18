@@ -1,0 +1,109 @@
+---
+import Layout from '../components/Layout.astro';
+---
+
+<Layout title="Syn924 — Terms of Service">
+  <article class="tos">
+    <h1>Terms of Service</h1>
+    <p class="sub">By commissioning me, you agree to the following. It's not legal jargon — just how I work.</p>
+
+    <section>
+      <h2>1. Payment</h2>
+      <p>50% upon sketch completion, 50% upon completion.</p>
+    </section>
+
+    <section>
+      <h2>2. Revisions</h2>
+      <p>
+        I do revisions during the sketch phase. Once we're in the middle/final
+        stage, small changes are free. If I made a mistake interpreting your
+        information, I'll fix it at no charge. If the change is due to missing
+        information from you, there's a small extra charge ($2–5).
+      </p>
+    </section>
+
+    <section>
+      <h2>3. Timeline</h2>
+      <p>
+        Depending on the commission, turnaround ranges from three days to a week
+        or two. Real life can cause delays — please understand.
+      </p>
+    </section>
+
+    <section>
+      <h2>4. Usage</h2>
+      <p>Personal use is included. Commercial use adds $10.</p>
+    </section>
+
+    <section>
+      <h2>5. Refunds</h2>
+      <p>
+        Refunds only if the artwork hasn't reached the color/render phase and
+        I've taken excessively long (3+ weeks).
+      </p>
+    </section>
+
+    <p class="closing">
+      Anything not covered here can be discussed in person — just ask.
+    </p>
+
+    <a href="/" class="back">&larr; Back to gallery</a>
+  </article>
+</Layout>
+
+<style>
+  .tos {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    color: var(--accent-gold);
+    margin-bottom: 4px;
+  }
+
+  .sub {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+  }
+
+  section {
+    margin-bottom: 28px;
+  }
+
+  section h2 {
+    font-size: 1rem;
+    color: var(--accent-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  section p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .closing {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin: 32px 0 16px;
+    font-size: 0.9rem;
+  }
+
+  .back {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .tos {
+      padding: 32px 16px;
+    }
+  }
+</style>

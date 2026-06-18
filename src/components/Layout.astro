@@ -1,0 +1,68 @@
+---
+// Syn924 · Layout base
+import '../styles/global.css';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+
+interface Props { title?: string; }
+const { title = 'Syn924 — Dark Surrealist Artist' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Syn924 — Dark surrealist artist. Commissions open." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts: Syne + Quicksand + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Quicksand:wght@400;500;600&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <Nav />
+    <div class="layout">
+      <aside class="sidebar">
+        <slot name="sidebar" />
+      </aside>
+      <main class="content">
+        <slot />
+      </main>
+    </div>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  .layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 0;
+    min-height: calc(100vh - var(--nav-h));
+  }
+  @media (max-width: 768px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+    .sidebar {
+      order: 2;
+    }
+  }
+  .sidebar {
+    border-right: 1px solid var(--border);
+    background: oklch(16% 0.02 280);
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      border-right: none;
+      border-top: 1px solid var(--border);
+    }
+  }
+  .content {
+    min-width: 0;
+  }
+</style>

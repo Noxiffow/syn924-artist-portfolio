@@ -1,0 +1,224 @@
+<aside>
+  <!-- ABOUT -->
+  <section class="sidebar-section" id="about">
+    <h2>About me</h2>
+    <p>
+      I draw things that try to be new or cool, or already established
+      characters. I love character design and often do concept art.
+    </p>
+    <p>
+      I draw humans, furries, robots &mdash; I'm pretty flexible and willing
+      to try things outside my comfort zone on occasion. I want to make
+      something that is definitively &ldquo;me&rdquo;: art that catches your eye
+      because it's unique.
+    </p>
+    <p class="tagline">Hopefully that's why you're here.</p>
+  </section>
+
+  <!-- DO'S & DON'TS -->
+  <section class="sidebar-section">
+    <h2>Do's &amp; Don'ts</h2>
+    <div class="dosdonts">
+      <div class="do-col">
+        <h3 class="do">Will do</h3>
+        <ul>
+          <li>Humans</li>
+          <li>Anthro / OCs</li>
+          <li>Furries</li>
+          <li>Robots</li>
+          <li>Simple backgrounds</li>
+          <li>NSFW</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <h3 class="dont">Will NOT do</h3>
+        <ul>
+          <li>Extremely complex characters</li>
+          <li>Bathroom-related artworks</li>
+          <li>Complex backgrounds</li>
+          <li>Characters with questionable histories</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMISSIONS -->
+  <section class="sidebar-section" id="commissions">
+    <h2>Commissions</h2>
+    <dl class="prices">
+      <div><dt>Concept Illustration / Ref Sheet</dt><dd>$60+</dd></div>
+      <div><dt>Full Body</dt><dd>$40+</dd></div>
+      <div><dt>Half Body</dt><dd>$25+</dd></div>
+      <div><dt>Bust</dt><dd>$15+</dd></div>
+      <div><dt>Sketch</dt><dd>$5+</dd></div>
+    </dl>
+    <p class="note">
+      Additional characters (Half/Full Body): +30% each.<br />
+      Prices are negotiable to an extent.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sidebar-section" id="contact">
+    <h2>Contact</h2>
+    <p>
+      Discord: <strong>924_syn</strong><br />
+      Twitter: <a href="https://x.com/924_SYN" target="_blank" rel="noopener">@924_SYN</a>
+    </p>
+    <p class="note">No forms, no hassle &mdash; just reach out.</p>
+  </section>
+</aside>
+
+<style>
+  aside {
+    padding: 32px 24px;
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    max-height: calc(100vh - var(--nav-h) - 48px);
+    position: sticky;
+    top: var(--nav-h);
+    background: linear-gradient(
+      180deg,
+      oklch(16% 0.02 280) 0%,
+      oklch(13% 0.015 280) 100%
+    );
+  }
+
+  .sidebar-section {
+    margin-bottom: 36px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  h2 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    opacity: 0.6;
+  }
+
+  h3 {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  h3.do { color: oklch(0.65 0.16 145); }
+  h3.dont { color: oklch(0.55 0.20 20); }
+
+  p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    line-height: 1.65;
+  }
+  p:last-child { margin-bottom: 0; }
+
+  .tagline {
+    color: var(--accent-gold);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-top: 12px;
+  }
+
+  .dosdonts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  ul {
+    list-style: none;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+  ul li {
+    padding: 2px 0;
+    padding-left: 14px;
+    position: relative;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 5px;
+    height: 1px;
+    background: var(--border);
+  }
+  .do-col ul li::before { background: oklch(0.65 0.16 145 / 50%); }
+  .dont-col ul li::before { background: oklch(0.55 0.20 20 / 50%); }
+
+  .prices {
+    font-size: 0.9rem;
+  }
+  .prices div {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid oklch(0.25 0.03 285 / 0.4);
+  }
+  .prices div:last-child {
+    border-bottom: none;
+  }
+  .prices dt {
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+  .prices dd {
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+  }
+
+  .note {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 10px;
+  }
+
+  strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  a {
+    transition: color 0.2s;
+  }
+
+  @media (max-width: 768px) {
+    aside {
+      position: static;
+      max-height: none;
+      border-right: none;
+      border-top: 1px solid var(--border);
+      padding: 24px 16px;
+      background: var(--surface);
+    }
+    .dosdonts {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+</style>
